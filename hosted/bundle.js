@@ -6,6 +6,7 @@ var handleError = function handleError(message) {
 };
 
 var sendAjax = function sendAjax(action, data) {
+  console.dir(data);
   $.ajax({
     cache: false,
     type: "POST",
@@ -18,6 +19,8 @@ var sendAjax = function sendAjax(action, data) {
       window.location = result.redirect;
     },
     error: function error(xhr, status, _error) {
+      console.log(JSON.parse(xhr.responseText));
+
       var messageObj = JSON.parse(xhr.responseText);
 
       handleError(messageObj.error);

@@ -4,6 +4,7 @@ const handleError = (message) => {
 }
 
 const sendAjax = (action, data) => {
+   console.dir(data);
   $.ajax({
     cache: false,
     type: "POST",
@@ -16,6 +17,8 @@ const sendAjax = (action, data) => {
       window.location = result.redirect;
     },
     error: (xhr, status, error) => {
+      console.log(JSON.parse(xhr.responseText));
+
       const messageObj = JSON.parse(xhr.responseText);
 
       handleError(messageObj.error);
